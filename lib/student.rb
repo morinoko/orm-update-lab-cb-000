@@ -3,9 +3,10 @@ require_relative "../config/environment.rb"
 # access your database connection with DB[:conn]
 
 class Student
-  attr_accessor :id, :name, :grade
+  attr_accessor :name, :grade
+  attr_reader :id 
   
-  def initialize(id: nil, name:, grade:)
+  def initialize(name, grade, id = nil)
     @name = name
     @grade = grade
     @id = id
@@ -45,7 +46,7 @@ class Student
   end
   
   def self.create(name, grade)
-    self.new(name: name, grade: grade).tap { |student| student.save }
+    self.new(name, grade).tap { |student| student.save }
   end
   
   def self.new_from_db(row)
@@ -53,7 +54,7 @@ class Student
     name = row[1]
     grade = row[2]
     
-    self.new(id: id, name: name, grade: grade)
+    self.new(name, grade, id)
   end
   
   def self.find_by_name(name)
