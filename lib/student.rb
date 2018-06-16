@@ -6,7 +6,7 @@ class Student
   attr_accessor :name, :grade
   attr_reader :id 
   
-  def initialize(name, grade, id = nil)
+  def initialize(name:, grade:, id: nil)
     @name = name
     @grade = grade
     @id = id
@@ -46,7 +46,7 @@ class Student
   end
   
   def self.create(name, grade)
-    self.new(name, grade).tap { |student| student.save }
+    self.new(name: name, grade: grade).tap { |student| student.save }
   end
   
   def self.new_from_db(row)
@@ -54,7 +54,7 @@ class Student
     name = row[1]
     grade = row[2]
     
-    self.new(name, grade, id)
+    self.new(id: id, name: name, grade: grade)
   end
   
   def self.find_by_name(name)
