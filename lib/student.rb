@@ -3,8 +3,7 @@ require_relative "../config/environment.rb"
 # access your database connection with DB[:conn]
 
 class Student
-  attr_accessor :name, :grade
-  attr_reader :id 
+  attr_accessor :id, :name, :grade
   
   def initialize(id: nil, name:, grade:)
     @name = name
